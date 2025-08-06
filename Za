@@ -1,0 +1,10 @@
+# Check the contents inside the main extracted folder
+main_folder = os.path.join(extract_dir, 'zamedia-export')
+nested_files = []
+
+for root, dirs, files in os.walk(main_folder):
+    for file in files:
+        nested_files.append(os.path.relpath(os.path.join(root, file), start=main_folder))
+
+import caas_jupyter_tools as cj
+cj.display_dataframe_to_user(name="File Zamedia", dataframe=nested_files)
